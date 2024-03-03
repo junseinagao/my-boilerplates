@@ -1,0 +1,36 @@
+{
+  "name": "Node.js & TypeScript",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  // "forwardPorts": [],
+  "postCreateCommand": "pnpm dlx playwright install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "github.copilot",
+        "EditorConfig.EditorConfig",
+        "ms-playwright.playwright"
+      ],
+      "settings": {
+        "eslint.workingDirectories": [
+          {
+            "mode": "auto"
+          }
+        ],
+        "eslint.enable": false,
+        "[javascript][javascriptreact][typescript][typescriptreact][json]": {
+          "editor.defaultFormatter": "biomejs.biome",
+          "editor.codeActionsOnSave": {
+            "quickfix.biome": "explicit",
+            "source.organizeImports.biome": "explicit"
+          }
+        },
+        "biome.lspBin": "./node_modules/@biomejs/biome/bin/biome"
+      }
+    }
+  },
+  // "remoteUser": "root"
+  "containerEnv": {}
+}

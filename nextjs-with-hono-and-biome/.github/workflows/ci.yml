@@ -1,0 +1,31 @@
+name: CI
+on:
+  push:
+    branches: [ main, next ]
+  pull_request:
+    branches: [ main, next ]
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checekout
+        uses: actions/checkout@v3
+
+      - name: Nodejs setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: pnpm setup
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: test
+        run: pnpm test
